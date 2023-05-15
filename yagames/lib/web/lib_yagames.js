@@ -115,8 +115,12 @@ var LibYaGamesPrivate = {
     YaGamesPrivate_LoadingAPIReady: function (cb_id) {
         var self = YaGamesPrivate;
         try {
-            self._ysdk.features.LoadingAPI?.ready();
-            self.send(cb_id, "ready");
+            if(self._ysdk.features.LoadingAPI){
+                self._ysdk.features.LoadingAPI.ready();
+                self.send(cb_id, "ready");
+            }else{
+               self.send(cb_id, "not exist"); 
+            }
         } catch (err) {
             self.delaySend(cb_id, self.toErrStr(err));
         }
