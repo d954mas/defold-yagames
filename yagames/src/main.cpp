@@ -78,6 +78,7 @@ extern "C"
     void YaGamesPrivate_Banner_Destroy(const char* crtb_id);
     void YaGamesPrivate_Banner_Refresh(const char* crtb_id, const int cb_id);
     void YaGamesPrivate_Banner_Set(const char* crtb_id, const char* cproperty, const char* cvalue);
+    void YaGamesPrivate_LoadingAPIReady(const int cb_id);
 }
 
 struct YaGamesPrivateListener
@@ -790,6 +791,12 @@ static int Banner_Init(lua_State* L)
     return 0;
 }
 
+static int LoadingAPIReady(lua_State* L)
+{
+    YaGamesPrivate_LoadingAPIReady(luaL_checkint(L, 1));
+    return 0;
+}
+
 static int Banner_Create(lua_State* L)
 {
     YaGamesPrivate_Banner_Create(luaL_checkstring(L, 1), luaL_checkstring(L, 2), luaL_checkint(L, 3));
@@ -894,6 +901,9 @@ static const luaL_reg Module_methods[] = {
     { "banner_destroy", Banner_Destroy },
     { "banner_refresh", Banner_Refresh },
     { "banner_set", Banner_Set },
+    
+    { "loading_api_ready", LoadingAPIReady },
+    
     { 0, 0 }
 };
 
