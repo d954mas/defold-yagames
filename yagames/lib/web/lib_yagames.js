@@ -112,7 +112,7 @@ var LibYaGamesPrivate = {
         self._callback_bool = null;
     },
     
-    YaGamesPrivateLoadingAPIReady: function (cb_id) {
+    YaGamesPrivate_LoadingAPIReady: function (cb_id) {
         var self = YaGamesPrivate;
         try {
             self._ysdk.features.LoadingAPI?.ready();
