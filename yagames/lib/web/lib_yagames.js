@@ -111,6 +111,16 @@ var LibYaGamesPrivate = {
         self._callback_number = null;
         self._callback_bool = null;
     },
+    
+    YaGamesPrivateLoadingAPIReady: function (cb_id) {
+        var self = YaGamesPrivate;
+        try {
+            self._ysdk.features.LoadingAPI?.ready();
+            self.send(cb_id, "ready");
+        } catch (err) {
+            self.delaySend(cb_id, self.toErrStr(err));
+        }
+    },
 
     YaGamesPrivate_Adv_ShowFullscreenAdv: function (cb_id) {
         var self = YaGamesPrivate;
